@@ -1,2 +1,7 @@
 <p>usuarios works!</p>
-<app-dynamic-table></app-dynamic-table>
+<app-dynamic-table 
+    [columns]="columns"
+    [rows]="rows"
+    [pageIndex]="pagination.pageIndex"
+    [pageSize]="pagination.pageSize"
+    [totalElements]="totalElements"></app-dynamic-table>

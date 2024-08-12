@@ -1,0 +1,12 @@
+.table-overflow-component {
+    table-layout: fixed;
+    width: 100%;
+  
+    .overflow-detect .overflow-detect-span {
+      display: block;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+}

@@ -1,1 +1,37 @@
-<p>dynamic-table works!</p>
+<table
+    mat-table
+    [dataSource]="dataSource"
+    class="table-overflow-component"
+    multiTemplateDataRows
+    matSort
+    (matSortChange)="onSortChange($event)">
+
+    <!-- <ng-container [matColumnDef]="column.name"
+    *ngFor="let column of columns; let i = index">
+        <th
+            mat-header-cell
+            *matHeaderCellDef
+            [mat-sort-header]="column.sortColumn ?? column.name"
+            class="px-2"
+        ></th>
+    </ng-container> -->
+
+    <!-- Definindo as colunas dinamicamente -->
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.title }}</th>
+        <td mat-cell *matCellDef="let element">{{ element[column.name] }}</td>
+    </ng-container>
+
+    <!-- Ações -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+            <ng-container *ngFor="let action of actions">
+                <button mat-button (click)="onActionClick(action)">{{ action.name }}</button>
+            </ng-container>
+        </td>
+    </ng-container>
+    <ng-container *ngIf="header">
+        <tr mat-header-row *matHeaderRowDef="headers"></tr>
+    </ng-container>
+</table>
