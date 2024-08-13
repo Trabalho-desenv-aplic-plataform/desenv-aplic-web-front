@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Actions } from 'src/shared/interfaces/actions';
 import { Column } from 'src/shared/interfaces/column';
+import { UsuarioService } from './services/usuario.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -17,24 +19,22 @@ export class UsuariosComponent implements OnInit {
   totalElements!: number;
   rows: any[] = [];
 
-  columns: Column[] = [
-    {
-      name: "name",
-      title: "Nome do usuário"
-    },
-    {
-      name: "email",
-      title: "E-mail"
-    },
-    {
-      name: "senha",
-      title: "Senha"
-    },
-    {
-      name: "tipo",
-      title: "Tipo do usuário"
-    }
-  ]
+  // tableColumns: Column[] = [
+  //   {
+  //     name: "nome",
+  //     title: "Nome do usuário"
+  //   },
+  //   {
+  //     name: "email",
+  //     title: "E-mail"
+  //   },
+  //   {
+  //     name: "tipo",
+  //     title: "Tipo do usuário"
+  //   }
+  // ]
+
+  tableColumns = ['nome', 'tipo', 'email'];
 
   actions: Actions[] = [
     {
@@ -44,9 +44,27 @@ export class UsuariosComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  private destroy$ = new Subject();
+  constructor(
+    private service: UsuarioService
+  ) { }
 
   ngOnInit(): void {
+    this.getList();
   }
 
+  private getList() {
+    this.service.getAll().pipe(takeUntil(this.destroy$)).subscribe({
+      next: (response) => {
+        console.log("[getList]", response)
+        this.rows = response.map((item: any) => {
+          return {
+            nome: item.nome,
+            email: item.email,
+            tipo: item.tipo
+          }
+        });
+      }
+    })
+  }
 }

@@ -11,6 +11,6 @@ export class UsuarioService extends AbastractApiService<any, any> {
     protected override http: HttpClient
   ) {
     super(http);
-    this.entity = "/user";
+    this.entity = "user";
   }
 }

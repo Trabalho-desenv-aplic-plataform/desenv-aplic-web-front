@@ -1,7 +1,6 @@
 <p>usuarios works!</p>
 <app-dynamic-table 
-    [columns]="columns"
-    [rows]="rows"
-    [pageIndex]="pagination.pageIndex"
-    [pageSize]="pagination.pageSize"
-    [totalElements]="totalElements"></app-dynamic-table>
+    *ngIf="rows.length > 0"
+    [displayedColumns]="tableColumns"
+    [data]="rows">
+</app-dynamic-table>
