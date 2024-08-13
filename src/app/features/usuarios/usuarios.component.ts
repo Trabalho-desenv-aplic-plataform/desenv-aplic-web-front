@@ -19,22 +19,22 @@ export class UsuariosComponent implements OnInit {
   totalElements!: number;
   rows: any[] = [];
 
-  // tableColumns: Column[] = [
-  //   {
-  //     name: "nome",
-  //     title: "Nome do usuário"
-  //   },
-  //   {
-  //     name: "email",
-  //     title: "E-mail"
-  //   },
-  //   {
-  //     name: "tipo",
-  //     title: "Tipo do usuário"
-  //   }
-  // ]
+  tableColumns: Column[] = [
+    {
+      name: "nome",
+      title: "Nome do usuário"
+    },
+    {
+      name: "email",
+      title: "E-mail"
+    },
+    {
+      name: "tipo",
+      title: "Tipo do usuário"
+    }
+  ]
 
-  tableColumns = ['nome', 'tipo', 'email'];
+  // tableColumns = ['nome', 'tipo', 'email'];
 
   actions: Actions[] = [
     {

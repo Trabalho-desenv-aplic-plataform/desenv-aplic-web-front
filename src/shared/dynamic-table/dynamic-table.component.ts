@@ -16,7 +16,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   
   // @ViewChild(MatTable) table!: MatTable<any>;
 
-  @Input() displayedColumns: string[] = [];
+  @Input() displayedColumns: Column[] = [];
   @Input() data: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,6 +36,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   // @Output() sortChange = new EventEmitter<Sort>();
 
   dataSource!: MatTableDataSource<any>;
+  columns: any = [];
   // menuIndex: number | undefined = undefined;
   // rightActions: Actions[] = [];
   // footers: string[] = [];
@@ -70,6 +71,9 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     // this.createTable();
     this.dataSource = new MatTableDataSource(this.data);
+    this.columns = this.displayedColumns.map(c => c.name);
+    console.log("[ngOnInit]", this.dataSource, this.displayedColumns);
+    
   }
 
   onSortChange(event: MaterialSort) {

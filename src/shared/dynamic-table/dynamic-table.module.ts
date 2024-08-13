@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DynamicAttributesDirective } from './directive/dynamic-attributes.directive';
-
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     DynamicAttributesDirective
@@ -15,6 +15,7 @@ import { DynamicAttributesDirective } from './directive/dynamic-attributes.direc
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatIconModule
   ]
 })
 export class DynamicTableModule { }

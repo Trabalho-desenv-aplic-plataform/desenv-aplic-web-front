@@ -44,16 +44,22 @@
     <mat-table [dataSource]="dataSource" matSort>
   
       <!-- Colunas Dinâmicas -->
-      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column | titlecase }} </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element[column] }} </mat-cell>
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column.name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="{{ column.sortColumn || column.name }}">
+          {{ column.title }}
+          <ng-container *ngIf="column.titleIconAttrs">
+            <!-- <mat-icon [attr.icon]="column.titleIconAttrs?.icon">{{ column.titleIconAttrs?.name }}</mat-icon> -->
+          </ng-container>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element[column.name] }}
+        </mat-cell>
       </ng-container>
   
       <!-- Cabeçalho e Linhas -->
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columns"></mat-row>
   
     </mat-table>
-  
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
