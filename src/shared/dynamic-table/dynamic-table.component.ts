@@ -43,16 +43,10 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {  
-    // if (changes['rows']) {
-    //   this.rows = changes['rows'].currentValue;
-    //   this.dataSource.data = changes['rows'].currentValue;
-    //   if (this.table) {
-    //     this.updateTable();
-    //   }
-    // }
-    // if (changes['columns']) {
-    //   this.createTable();
-    // }
+    console.log("[ngOnChanges]", changes);
+    if (changes) {
+      this.createTable();
+    }
   }
 
   ngOnDestroy(): void {
@@ -61,9 +55,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.data);
-    this.columns = this.displayedColumns.map(c => c.name);
-    this.columns.push(this.actionColumnName);
+    this.createTable();
   }
 
   onSortChange(event: MaterialSort) {
@@ -71,25 +63,16 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
     // this.sortChange.emit(event);
   }
 
-  onActionClick($event: any) {
-    this.actionClick.emit($event);
+  onActionClick($event: any, element: any) {
+    this.actionClick.emit({
+      element: element,
+      name: $event.name 
+    });
   }
 
   private createTable() {
-    // this.displayedColumns = this.columns.map((column) => column.name);
-    let headers: string[] = [];
-    // headers.push(...this.displayedColumns);
-
-    this.headers = headers;
-    this.dataSource.data = this.data || [];
-    if (this.actions.length > 0) headers.push('actions');
-    // if (this.table) {
-    //   this.updateTable();
-    // } 
+    this.dataSource = new MatTableDataSource(this.data);
+    this.columns = this.displayedColumns.map(c => c.name);
+    this.columns.push(this.actionColumnName);
   }
-
-  // private updateTable() {
-  //   this.table.renderRows();
-  //   this.detailExpanseIndex = undefined;
-  // }
 }

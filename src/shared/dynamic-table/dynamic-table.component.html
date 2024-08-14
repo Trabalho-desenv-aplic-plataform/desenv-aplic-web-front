@@ -60,7 +60,7 @@
         <mat-header-cell class="header-style" *matHeaderCellDef>Ações</mat-header-cell>
         <mat-cell *matCellDef="let element">
             <ng-container *ngFor="let action of actions">
-                <button (click)="onActionClick(action)" mat-icon-button class="button-icon {{ action.class }}">
+                <button (click)="onActionClick(action, element)" mat-icon-button class="button-icon {{ action.class }}">
                     <mat-icon class="mat-icon {{ action.class }}">{{ action.icon }}</mat-icon>
                 </button>
             </ng-container>

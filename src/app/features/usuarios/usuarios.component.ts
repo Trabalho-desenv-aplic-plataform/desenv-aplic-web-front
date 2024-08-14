@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Actions } from 'src/shared/interfaces/actions';
 import { Column } from 'src/shared/interfaces/column';
 import { UsuarioService } from './services/usuario.service';
-import { Subject, takeUntil } from 'rxjs';
+import { finalize, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -64,19 +64,22 @@ export class UsuariosComponent implements OnInit {
     this.service.getAll().pipe(takeUntil(this.destroy$)).subscribe({
       next: (response) => {
         console.log("[getList]", response)
-        this.rows = response.map((item: any) => {
-          return {
-            nome: item.nome,
-            email: item.email,
-            tipo: item.tipo
-          }
-        });
+        this.rows = response;
+      },
+      error: (error) => {
+        console.error("[getList] Error fetching list:", error);
       }
     })
   }
 
   onActionClick(event: any) {
     console.log("[onActionClick]", event);
-    
+    if (event.name === "delete") {
+      this.service.delete(event.element.id).pipe(finalize(() => this.getList())).subscribe({
+        next: (response) => {
+          // this.getList();
+        }
+      })
+    }
   }
 }
