@@ -45,7 +45,7 @@
   
       <!-- Colunas Dinâmicas -->
       <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column.name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header="{{ column.sortColumn || column.name }}">
+        <mat-header-cell class="header-style" *matHeaderCellDef mat-sort-header="{{ column.sortColumn || column.name }}">
           {{ column.title }}
           <ng-container *ngIf="column.titleIconAttrs">
             <!-- <mat-icon [attr.icon]="column.titleIconAttrs?.icon">{{ column.titleIconAttrs?.name }}</mat-icon> -->
@@ -57,11 +57,11 @@
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+        <mat-header-cell class="header-style" *matHeaderCellDef>Ações</mat-header-cell>
         <mat-cell *matCellDef="let element">
             <ng-container *ngFor="let action of actions">
-                <button mat-icon-button>
-                    <!-- <mat-icon></mat-icon> -->{{ action.icon }}
+                <button (click)="onActionClick(action)" mat-icon-button class="button-icon {{ action.class }}">
+                    <mat-icon class="mat-icon {{ action.class }}">{{ action.icon }}</mat-icon>
                 </button>
             </ng-container>
         </mat-cell>

@@ -3,5 +3,6 @@
     *ngIf="rows.length > 0"
     [displayedColumns]="tableColumns"
     [actions]="actions"
-    [data]="rows">
+    [data]="rows"
+    (actionClick)="onActionClick($event)">
 </app-dynamic-table>

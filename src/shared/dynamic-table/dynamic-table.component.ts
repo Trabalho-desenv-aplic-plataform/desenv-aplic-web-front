@@ -28,26 +28,14 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() header: boolean = true;
   headers!: string[];
 
-  // @Input() rows: number[] = [];
-  // @Input() pageSize = 10;
-  // @Input() totalElements = 0;
-  // @Input() pageIndex = 0;
-  // @Input() header: boolean = true;
-  
   // @Output() pageChange = new EventEmitter<PageEvent>();
-  // @Output() actionClick = new EventEmitter<ActionClickEvent>();
+  @Output() actionClick = new EventEmitter<ActionClickEvent>();
   // @Output() sortChange = new EventEmitter<Sort>();
 
   dataSource!: MatTableDataSource<any>;
   columns: any = [];
   rightActions: Actions[] = [];
   public actionColumnName = 'actions';
-  // menuIndex: number | undefined = undefined;
-  // footers: string[] = [];
-  // headers!: string[];
-  // displayedColumns!: string[];
-  // detailExpanseIndex: number | undefined = undefined;
-
   private destroy$ = new Subject();
 
   constructor() {
@@ -84,7 +72,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onActionClick($event: any) {
-    // this.actionClick.emit($event)
+    this.actionClick.emit($event);
   }
 
   private createTable() {

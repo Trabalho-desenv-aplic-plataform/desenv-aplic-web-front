@@ -38,25 +38,17 @@ export class UsuariosComponent implements OnInit {
 
   actions: Actions[] = [
     {
-      name: "view",
-      tooltip: "Visualizar",
-      icon: "remove_red_eye",
-    },
-    {
       name: "edit",
       tooltip: "Editar",
       icon: "edit",
+      class: "edit"
     },
     {
       name: "delete",
       tooltip: "Excluir",
       icon: "delete_forever",
-    },
-    {
-      name: "add",
-      tooltip: "Cadastrar check",
-      icon: "add_circle_outline",
-    },
+      class: "delete"
+    }
   ]
 
   private destroy$ = new Subject();
@@ -81,5 +73,10 @@ export class UsuariosComponent implements OnInit {
         });
       }
     })
+  }
+
+  onActionClick(event: any) {
+    console.log("[onActionClick]", event);
+    
   }
 }
