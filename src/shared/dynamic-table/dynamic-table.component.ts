@@ -14,24 +14,17 @@ import { MatSort, Sort as MaterialSort, Sort } from '@angular/material/sort';
 })
 export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   
-  // @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   @Input() displayedColumns: Column[] = [];
   @Input() data: any[] = [];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  
-  // @Input() columns!: Column[];
-  // @Input() pagination: boolean = true;
   @Input() actions: Actions[] = [];
-  @Input() header: boolean = true;
-  headers!: string[];
+  @Input() header: boolean = true;  
 
-  // @Output() pageChange = new EventEmitter<PageEvent>();
   @Output() actionClick = new EventEmitter<ActionClickEvent>();
-  // @Output() sortChange = new EventEmitter<Sort>();
-
+  
+  headers!: string[];
   dataSource!: MatTableDataSource<any>;
   columns: any = [];
   rightActions: Actions[] = [];
