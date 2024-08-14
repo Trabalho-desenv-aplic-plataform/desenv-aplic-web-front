@@ -10,3 +10,35 @@
       overflow: hidden;
     }
 }
+
+.header-style {
+  font-weight: bold;
+}
+
+.button-icon {
+  // background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  &.edit {
+    background-color: #FBF3CA;
+  }
+  &.delete {
+    background-color: #FDE6E7;
+  }
+}
+
+.mat-icon {
+  font-size: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  &.edit {
+    color: #E8A21A;
+  }
+  &.delete {
+    color: #E94A63;
+  }
+}

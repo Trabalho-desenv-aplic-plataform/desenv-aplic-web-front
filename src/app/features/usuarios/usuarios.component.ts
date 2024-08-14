@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Actions } from 'src/shared/interfaces/actions';
 import { Column } from 'src/shared/interfaces/column';
+import { UsuarioService } from './services/usuario.service';
+import { finalize, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -17,9 +19,9 @@ export class UsuariosComponent implements OnInit {
   totalElements!: number;
   rows: any[] = [];
 
-  columns: Column[] = [
+  tableColumns: Column[] = [
     {
-      name: "name",
+      name: "nome",
       title: "Nome do usuário"
     },
     {
@@ -27,26 +29,57 @@ export class UsuariosComponent implements OnInit {
       title: "E-mail"
     },
     {
-      name: "senha",
-      title: "Senha"
-    },
-    {
       name: "tipo",
       title: "Tipo do usuário"
     }
   ]
 
+  // tableColumns = ['nome', 'tipo', 'email'];
+
   actions: Actions[] = [
     {
+      name: "edit",
+      tooltip: "Editar",
+      icon: "edit",
+      class: "edit"
+    },
+    {
       name: "delete",
+      tooltip: "Excluir",
       icon: "delete_forever",
-      tooltip: "Deletar"
+      class: "delete"
     }
   ]
 
-  constructor() { }
+  private destroy$ = new Subject();
+  constructor(
+    private service: UsuarioService
+  ) { }
 
   ngOnInit(): void {
+    this.getList();
   }
 
+  private getList() {
+    this.service.getAll().pipe(takeUntil(this.destroy$)).subscribe({
+      next: (response) => {
+        console.log("[getList]", response)
+        this.rows = response;
+      },
+      error: (error) => {
+        console.error("[getList] Error fetching list:", error);
+      }
+    })
+  }
+
+  onActionClick(event: any) {
+    console.log("[onActionClick]", event);
+    if (event.name === "delete") {
+      this.service.delete(event.element.id).pipe(finalize(() => this.getList())).subscribe({
+        next: (response) => {
+          // this.getList();
+        }
+      })
+    }
+  }
 }
