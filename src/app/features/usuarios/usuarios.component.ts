@@ -38,10 +38,25 @@ export class UsuariosComponent implements OnInit {
 
   actions: Actions[] = [
     {
+      name: "view",
+      tooltip: "Visualizar",
+      icon: "remove_red_eye",
+    },
+    {
+      name: "edit",
+      tooltip: "Editar",
+      icon: "edit",
+    },
+    {
       name: "delete",
+      tooltip: "Excluir",
       icon: "delete_forever",
-      tooltip: "Deletar"
-    }
+    },
+    {
+      name: "add",
+      tooltip: "Cadastrar check",
+      icon: "add_circle_outline",
+    },
   ]
 
   private destroy$ = new Subject();

@@ -24,7 +24,10 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   
   // @Input() columns!: Column[];
   // @Input() pagination: boolean = true;
-  // @Input() actions: Actions[] = [];
+  @Input() actions: Actions[] = [];
+  @Input() header: boolean = true;
+  headers!: string[];
+
   // @Input() rows: number[] = [];
   // @Input() pageSize = 10;
   // @Input() totalElements = 0;
@@ -37,8 +40,9 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
 
   dataSource!: MatTableDataSource<any>;
   columns: any = [];
+  rightActions: Actions[] = [];
+  public actionColumnName = 'actions';
   // menuIndex: number | undefined = undefined;
-  // rightActions: Actions[] = [];
   // footers: string[] = [];
   // headers!: string[];
   // displayedColumns!: string[];
@@ -69,11 +73,9 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit(): void {
-    // this.createTable();
     this.dataSource = new MatTableDataSource(this.data);
     this.columns = this.displayedColumns.map(c => c.name);
-    console.log("[ngOnInit]", this.dataSource, this.displayedColumns);
-    
+    this.columns.push(this.actionColumnName);
   }
 
   onSortChange(event: MaterialSort) {
@@ -85,18 +87,18 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
     // this.actionClick.emit($event)
   }
 
-  // private createTable() {
-  //   this.displayedColumns = this.columns.map((column) => column.name);
-  //   let headers: string[] = [];
-  //   headers.push(...this.displayedColumns);
+  private createTable() {
+    // this.displayedColumns = this.columns.map((column) => column.name);
+    let headers: string[] = [];
+    // headers.push(...this.displayedColumns);
 
-  //   this.headers = headers;
-  //   this.dataSource.data = this.rows || [];
-
-  //   if (this.table) {
-  //     this.updateTable();
-  //   } 
-  // }
+    this.headers = headers;
+    this.dataSource.data = this.data || [];
+    if (this.actions.length > 0) headers.push('actions');
+    // if (this.table) {
+    //   this.updateTable();
+    // } 
+  }
 
   // private updateTable() {
   //   this.table.renderRows();
