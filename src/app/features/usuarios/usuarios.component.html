@@ -1,15 +1,30 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-9"><span>Hello</span></div>
-        <div class="col-sm-3">World</div>
+    <div class="row pb-3">
+        <div class="col-sm-10">
+            <div class="h3-bold">
+                <p>
+                    Contatos
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button
+                mat-flat-buttom
+                class="w-100 button-primary"
+                (click)="openDialog()"
+                >
+                <mat-icon style="font-size: 20px;">add</mat-icon>
+                <span>
+                    Adicionar
+                </span>
+            </button>
+        </div>
     </div>
+    <app-dynamic-table 
+        *ngIf="rows.length > 0"
+        [displayedColumns]="tableColumns"
+        [actions]="actions"
+        [data]="rows"
+        (actionClick)="onActionClick($event)">
+    </app-dynamic-table>
 </div>
-<button type="button" class="btn btn-primary">Primary</button>
-<p>usuarios !</p>
-<app-dynamic-table 
-    *ngIf="rows.length > 0"
-    [displayedColumns]="tableColumns"
-    [actions]="actions"
-    [data]="rows"
-    (actionClick)="onActionClick($event)">
-</app-dynamic-table>

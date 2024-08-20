@@ -1,11 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
+:root {
+    --primary-color: #0A8D88;
+}
+
 html, body { 
     font-family: 'Inter', sans-serif;
     height: 100%; 
+    background-color: #f0fdfb;
 }
 h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea {
     font-family: 'Inter', sans-serif;
 }
 body { margin: 0; }
+
+.button-primary {
+    background-color: var(--primary-color);
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    mat-icon {
+        color: white;
+    }
+}
+
+.icon-dialog {
+    border-radius: 50%;
+    height: 52px;
+    border: none;
+
+    &.primary {
+        background-color: var(--primary-color);
+    }
+    mat-icon {
+        color: white;
+        font-size: 20px;
+    }
+}
+
+.h3-bold {
+    position: relative;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 24px;
+    
+    p {
+        margin-bottom: 0;
+    }
+}
