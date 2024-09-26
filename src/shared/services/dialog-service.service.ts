@@ -21,8 +21,8 @@ export class DialogService {
     const baseOptions = {
       autofocus: false,
       disableClod: true,
-      minWidth: '40vw',
-      minHeight: '80vh',
+      maxWidth: '580px',
+      maxHeight: '659px',
       panelClass: 'position-relative',
     }
 

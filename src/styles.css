@@ -3,6 +3,7 @@
 
 :root {
     --primary-color: #0A8D88;
+    --secondary-color: #F0FDFB;
 }
 
 html, body { 
@@ -26,13 +27,24 @@ body { margin: 0; }
     }
 }
 
+.button-secondary {
+    background-color: var(--secondary-color);
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    mat-icon {
+        color: black;
+    }
+}
+
 .icon-dialog {
     border-radius: 50%;
-    height: 52px;
     border: none;
 
     &.primary {
         background-color: var(--primary-color);
+        color: white;
     }
     mat-icon {
         color: white;
