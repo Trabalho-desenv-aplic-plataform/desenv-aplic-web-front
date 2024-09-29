@@ -16,7 +16,4 @@ export class AddEditUsuarioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  exit(isChange?: boolean) {
-    this.dialogRef.close(isChange);
-  }
 }
