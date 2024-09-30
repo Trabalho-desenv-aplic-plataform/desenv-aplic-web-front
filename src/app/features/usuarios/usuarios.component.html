@@ -1,25 +1,8 @@
-<div class="container-fluid">
-    <div class="row pb-3">
-        <div class="col-sm-10">
-            <div class="h3-bold">
-                <p>
-                    Contatos
-                </p>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <button
-                mat-flat-buttom
-                class="w-100 button-primary"
-                (click)="openDialog()"
-                >
-                <mat-icon style="font-size: 20px;">add</mat-icon>
-                <span>
-                    Adicionar
-                </span>
-            </button>
-        </div>
-    </div>
+<app-usuarios
+    headerTitle="Contatos"
+    headerIcon="add"
+    headerAction="Adicionar">
+
     <app-dynamic-table 
         *ngIf="rows.length > 0"
         [displayedColumns]="tableColumns"
@@ -27,4 +10,4 @@
         [data]="rows"
         (actionClick)="onActionClick($event)">
     </app-dynamic-table>
-</div>
+</app-usuarios>

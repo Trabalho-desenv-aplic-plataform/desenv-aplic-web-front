@@ -7,10 +7,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { BaseLayoutComponent } from './base-layout/base-layout.component';
 
 @NgModule({
   declarations: [
-    DynamicTableComponent
+    DynamicTableComponent,
+    BaseLayoutComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   exports: [
     DynamicTableComponent,
+    BaseLayoutComponent,
     CommonModule,
     MatTableModule,
     MatPaginatorModule,

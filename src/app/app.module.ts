@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { AddEditUsuarioComponent } from './features/components/add-edit-usuario/add-edit-usuario.component';
+import { GruposModule } from './features/grupos/grupos.module';
+import { AppRoutingModule } from './app-routing-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { AddEditUsuarioComponent } from './features/components/add-edit-usuario/
     HttpClientModule,
     SharedModule ,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
