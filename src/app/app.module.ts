@@ -10,6 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { AddEditUsuarioComponent } from './features/components/add-edit-usuario/add-edit-usuario.component';
 import { GruposModule } from './features/grupos/grupos.module';
 import { AppRoutingModule } from './app-routing-routing.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,7 @@ import { AppRoutingModule } from './app-routing-routing.module';
     SharedModule ,
     BrowserAnimationsModule,
     MatIconModule,
-    AppRoutingModule
+    AppRoutingModule,    
   ],
   providers: [],
   bootstrap: [AppComponent],
