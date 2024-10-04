@@ -1,3 +1,11 @@
+<div class="d-flex flex-column align-items-center">
+    <button mat-fab class="header-title-dialog-button">
+        <mat-icon matPrefix>bookmark_outline</mat-icon>
+    </button>
+    <h1>
+        Adicionar Grupos
+    </h1>
+</div>
 <div class="w-100">
     <mat-form-field floatLabel="never" class="w-100" appearance="outline">
         <mat-icon matPrefix>bookmark_outline</mat-icon>
@@ -12,16 +20,16 @@
         [cpDialogDisplay]="'inline'">
     </span>
 
-    <div class="d-flex flex-row mt-4 w-100 justify-content-center">
-        <button mat-flat-button class="button-dialog-primary me-2" (click)="generatePayload()">
-            <strong>
-                Avançar
-            </strong>
-        </button>
-        <button mat-flat-button class="button-dialog-secondary" (click)="generatePayload()">
-            <strong>
-                Fechar
-            </strong>
-        </button>
-    </div>
+</div>
+<div class="d-flex flex-row mt-4 w-100 justify-content-center">
+    <button mat-flat-button class="button-dialog-primary me-2" (click)="generatePayload()">
+        <strong>
+            Avançar
+        </strong>
+    </button>
+    <button (click)="exit()" mat-flat-button class="button-dialog-secondary" (click)="generatePayload()">
+        <strong>
+            Fechar
+        </strong>
+    </button>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Cmyk, ColorPickerService } from 'ngx-color-picker';
 
 @Component({
@@ -46,7 +47,11 @@ export class AddEditGruposComponent implements OnInit {
 
   public cmykColor = new Cmyk(0, 0, 0, 0);
 
-  constructor(public vcRef: ViewContainerRef, private cpService: ColorPickerService) {}
+  constructor(
+    public vcRef: ViewContainerRef,
+    private cpService: ColorPickerService,
+    private dialogRef: MatDialogRef<AddEditGruposComponent>
+  ) {}
   
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -89,5 +94,9 @@ export class AddEditGruposComponent implements OnInit {
 
     console.log(payload);  // Exibe o payload no console para verificação
     return payload;
+  }
+
+  exit(response = false) {
+    this.dialogRef.close(response);
   }
 }
