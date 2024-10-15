@@ -6,6 +6,10 @@ const routes: Routes = [
     {
         path: 'grupos',
         loadChildren: () => import('./features/grupos/grupos.module').then(m => m.GruposModule)
+    },
+    {
+        path: 'usuarios',
+        loadChildren: () => import('./features/usuarios/usuarios.module').then(m => m.UsuariosModule)
     }
 ];
 

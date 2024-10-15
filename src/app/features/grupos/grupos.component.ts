@@ -27,12 +27,12 @@ export class GruposComponent implements OnInit, OnDestroy {
       title: "Nome do grupo"
     },
     {
-      name: "DataCriacao",
+      name: "dataCriacao",
       title: "Data de criação do grupo"
     },
     {
-      name: "",
-      title: ""
+      name: "cor",
+      title: "Cor do grupo"
     }
   ]
 
@@ -70,8 +70,8 @@ export class GruposComponent implements OnInit, OnDestroy {
   private getList() {
     this.service.getAll().pipe(takeUntil(this.destroy$)).subscribe({
       next: (response) => {
-        console.log("[getList]", response)
         this.rows = response;
+        console.log("[getList]", this.rows)
       },
       error: (error) => {
         console.error("[getList] Error fetching list:", error);
