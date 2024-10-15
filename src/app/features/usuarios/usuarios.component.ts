@@ -3,6 +3,8 @@ import { Actions } from 'src/shared/interfaces/actions';
 import { Column } from 'src/shared/interfaces/column';
 import { UsuarioService } from './services/usuario.service';
 import { finalize, Subject, takeUntil } from 'rxjs';
+import { DialogService } from 'src/shared/services/dialog-service.service';
+import { AddEditUsuarioComponent } from '../components/add-edit-usuario/add-edit-usuario.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -53,7 +55,8 @@ export class UsuariosComponent implements OnInit {
 
   private destroy$ = new Subject();
   constructor(
-    private service: UsuarioService
+    private service: UsuarioService,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
@@ -81,5 +84,11 @@ export class UsuariosComponent implements OnInit {
         }
       })
     }
+  }
+
+  openDialog() {
+    console.log("chamou");
+    
+    this.dialogService.openGenericDialog(AddEditUsuarioComponent);
   }
 }
