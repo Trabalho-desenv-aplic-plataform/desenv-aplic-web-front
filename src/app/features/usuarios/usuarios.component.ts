@@ -66,8 +66,9 @@ export class UsuariosComponent implements OnInit {
   private getList() {
     this.service.getAll().pipe(takeUntil(this.destroy$)).subscribe({
       next: (response) => {
-        console.log("[getList]", response)
         this.rows = response;
+        console.log("[getList]", this.rows);
+        
       },
       error: (error) => {
         console.error("[getList] Error fetching list:", error);
