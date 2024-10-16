@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Cmyk, ColorPickerService } from 'ngx-color-picker';
+import { GruposService } from '../../service/grupos.service';
 
 @Component({
   selector: 'app-add-edit-grupos',
@@ -50,7 +51,8 @@ export class AddEditGruposComponent implements OnInit {
   constructor(
     public vcRef: ViewContainerRef,
     private cpService: ColorPickerService,
-    private dialogRef: MatDialogRef<AddEditGruposComponent>
+    private dialogRef: MatDialogRef<AddEditGruposComponent>,
+    private service: GruposService
   ) {}
   
   ngOnInit(): void {
@@ -88,12 +90,15 @@ export class AddEditGruposComponent implements OnInit {
   // Função para gerar o payload
   generatePayload() {
     const payload = {
-      color: this.selectedColor,
-      name: this.name
+      cor: this.selectedColor,
+      nome: this.name
     };
 
-    console.log(payload);  // Exibe o payload no console para verificação
-    return payload;
+    this.service.post(payload).subscribe({
+      next: (response) => {
+        this.dialogRef.close(true);
+      }
+    })
   }
 
   exit(response = false) {
