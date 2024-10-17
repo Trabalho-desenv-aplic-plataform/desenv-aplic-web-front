@@ -8,6 +8,9 @@ import { SharedModule } from 'src/shared/shared.module';
 import { AddEditGruposComponent } from './components/add-edit-grupos/add-edit-grupos.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { FormsModule } from '@angular/forms';
     GruposRoutingModule,
     MatIconModule,
     FormsModule,
-    ColorPickerModule
-  ]
+    ColorPickerModule,
+    MatFormFieldModule,
+    MatInputModule, 
+    MatButtonModule       
+  ],
 })
 export class GruposModule { }

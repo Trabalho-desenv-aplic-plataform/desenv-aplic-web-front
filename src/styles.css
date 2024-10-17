@@ -26,6 +26,28 @@ body { margin: 0; }
     }
 }
 
+.button-dialog-primary {
+    background-color: var(--primary-color);
+    height: 40px;
+    color: white;
+    border-radius: 25%;
+    width: 40%;
+}
+
+.button-dialog-secondary {
+    background-color: #F0FDFB;
+    height: 40px;
+    color: black;
+    border-radius: 25%;
+    width: 40%;
+}
+
+.header-title-dialog-button {
+    mat-icon {
+        color: white;
+    }
+}
+
 .icon-dialog {
     border-radius: 50%;
     height: 52px;

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Cmyk, ColorPickerService } from 'ngx-color-picker';
+import { GruposService } from '../../service/grupos.service';
 
 @Component({
   selector: 'app-add-edit-grupos',
@@ -9,9 +11,9 @@ import { Cmyk, ColorPickerService } from 'ngx-color-picker';
 })
 export class AddEditGruposComponent implements OnInit {
 
-  public toggle: boolean = false;
+  public toggle = false;
 
-  public rgbaText: string = 'rgba(165, 26, 214, 0.2)';
+  public rgbaText = 'rgba(165, 26, 214, 0.2)';
 
   public arrayColors: any = {
     color1: '#2883e9',
@@ -21,32 +23,37 @@ export class AddEditGruposComponent implements OnInit {
     color5: 'rgba(45,208,45,1)'
   };
 
-  public selectedColor: string = 'color1';
+  public selectedColor = 'color1';
 
-  public color1: string = '#2889e9';
-  public color2: string = '#e920e9';
-  public color3: string = '#fff500';
-  public color4: string = 'rgb(236,64,64)';
-  public color5: string = 'rgba(45,208,45,1)';
-  public color6: string = '#1973c0';
-  public color7: string = '#f200bd';
-  public color8: string = '#a8ff00';
-  public color9: string = '#278ce2';
-  public color10: string = '#0a6211';
-  public color11: string = '#f2ff00';
-  public color12: string = '#f200bd';
-  public color13: string = 'rgba(0,255,0,0.5)';
-  public color14: string = 'rgb(0,255,255)';
-  public color15: string = 'rgb(255,0,0)';
-  public color16: string = '#a51ad633';
-  public color17: string = '#666666';
-  public color18: string = '#ff0000';
+  public color1 = '#2889e9';
+  public color2 = '#e920e9';
+  public color3 = '#fff500';
+  public color4 = 'rgb(236,64,64)';
+  public color5 = 'rgba(45,208,45,1)';
+  public color6 = '#1973c0';
+  public color7 = '#f200bd';
+  public color8 = '#a8ff00';
+  public color9 = '#278ce2';
+  public color10 = '#0a6211';
+  public color11 = '#f2ff00';
+  public color12 = '#f200bd';
+  public color13 = 'rgba(0,255,0,0.5)';
+  public color14 = 'rgb(0,255,255)';
+  public color15 = 'rgb(255,0,0)';
+  public color16 = '#a51ad633';
+  public color17 = '#666666';
+  public color18 = '#ff0000';
 
-  public cmykValue: string = '';
+  public cmykValue = '';
 
-  public cmykColor: Cmyk = new Cmyk(0, 0, 0, 0);
+  public cmykColor = new Cmyk(0, 0, 0, 0);
 
-  constructor(public vcRef: ViewContainerRef, private cpService: ColorPickerService) {}
+  constructor(
+    public vcRef: ViewContainerRef,
+    private cpService: ColorPickerService,
+    private dialogRef: MatDialogRef<AddEditGruposComponent>,
+    private service: GruposService
+  ) {}
   
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -76,5 +83,25 @@ export class AddEditGruposComponent implements OnInit {
     }
 
     return '';
+  }
+
+  name: string = '';  // Nome que será preenchido
+
+  // Função para gerar o payload
+  generatePayload() {
+    const payload = {
+      cor: this.selectedColor,
+      nome: this.name
+    };
+
+    this.service.post(payload).subscribe({
+      next: (response) => {
+        this.dialogRef.close(true);
+      }
+    })
+  }
+
+  exit(response = false) {
+    this.dialogRef.close(response);
   }
 }

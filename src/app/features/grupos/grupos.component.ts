@@ -5,11 +5,13 @@ import { Subject, finalize, takeUntil } from 'rxjs';
 import { Actions } from 'src/shared/interfaces/actions';
 import { Column } from 'src/shared/interfaces/column';
 import { GruposService } from './service/grupos.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-grupos',
   templateUrl: './grupos.component.html',
-  styleUrls: ['./grupos.component.css']
+  styleUrls: ['./grupos.component.css'],
+  providers: [DatePipe]
 })
 export class GruposComponent implements OnInit, OnDestroy {
 
@@ -54,7 +56,8 @@ export class GruposComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
   constructor(
     private dialogService: DialogService,
-    private service: GruposService
+    private service: GruposService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -71,7 +74,6 @@ export class GruposComponent implements OnInit, OnDestroy {
     this.service.getAll().pipe(takeUntil(this.destroy$)).subscribe({
       next: (response) => {
         this.rows = response;
-        console.log("[getList]", this.rows)
       },
       error: (error) => {
         console.error("[getList] Error fetching list:", error);
@@ -81,10 +83,12 @@ export class GruposComponent implements OnInit, OnDestroy {
 
   onActionClick(event: any){
     console.log("[onActionClick]", event);
-    if(event.name === "delete"){
+    if (event.name === "delete") {
       this.service.delete(event.element.id).pipe(finalize(() => this.getList())).subscribe({
         next: (response) => {
-
+          this.service.delete(event.element.id).subscribe((response) => {
+            this.getList();
+          })
         }
       })
     }
@@ -93,7 +97,12 @@ export class GruposComponent implements OnInit, OnDestroy {
   onButtonClick() {
     this.dialogService.openGenericDialog(AddEditGruposComponent, {
 
-    });
+    })
+    .afterClosed().subscribe((response: boolean) => {
+      if (response) {
+        this.getList();
+      }
+    })
   }
 
 }
