@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-loading-component',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loading-component.component.css']
 })
 export class LoadingComponentComponent implements OnInit {
-
+  @Input() isLoading: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
