@@ -10,6 +10,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { AddEditUsuarioComponent } from './features/components/add-edit-usuario/add-edit-usuario.component';
 import { GruposModule } from './features/grupos/grupos.module';
 import { AppRoutingModule } from './app-routing-routing.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { SideBarComponent } from './features/side-bar/side-bar.component';
+import {SidebarModule} from 'primeng/sidebar';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { pt_BR } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -25,7 +30,8 @@ registerLocaleData(pt);
   declarations: [
     AppComponent,
     UsuariosComponent,
-    AddEditUsuarioComponent
+    AddEditUsuarioComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +39,8 @@ registerLocaleData(pt);
     SharedModule ,
     BrowserAnimationsModule,
     MatIconModule,
+    AppRoutingModule,   
+    SidebarModule 
     AppRoutingModule,
     FormsModule,
     IconsProviderModule,
