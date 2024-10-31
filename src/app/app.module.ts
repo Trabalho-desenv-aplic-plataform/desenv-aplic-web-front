@@ -15,6 +15,16 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { SideBarComponent } from './features/side-bar/side-bar.component';
 import {SidebarModule} from 'primeng/sidebar';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { pt_BR } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import pt from '@angular/common/locales/pt';
+import { FormsModule } from '@angular/forms';
+import { IconsProviderModule } from './icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+
+registerLocaleData(pt);
 
 @NgModule({
   declarations: [
@@ -31,8 +41,13 @@ import {SidebarModule} from 'primeng/sidebar';
     MatIconModule,
     AppRoutingModule,   
     SidebarModule 
+    AppRoutingModule,
+    FormsModule,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule
   ],
-  providers: [],
+  providers: [{ provide: NZ_I18N, useValue: pt_BR }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
