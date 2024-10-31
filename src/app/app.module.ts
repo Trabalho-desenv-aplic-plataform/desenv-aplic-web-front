@@ -19,7 +19,6 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { pt_BR } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import pt from '@angular/common/locales/pt';
-import { FormsModule } from '@angular/forms';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -40,9 +39,7 @@ registerLocaleData(pt);
     BrowserAnimationsModule,
     MatIconModule,
     AppRoutingModule,   
-    SidebarModule 
-    AppRoutingModule,
-    FormsModule,
+    SidebarModule,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule
