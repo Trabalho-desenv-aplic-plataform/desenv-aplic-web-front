@@ -8,6 +8,7 @@ import { Actions } from 'src/shared/interfaces/actions';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { error } from 'console';
 import { DatePipe } from '@angular/common';
+import { AddEditContatosComponent } from './components/add-edit-contatos/add-edit-contatos.component';
 //import { AddEditContatosComponent } from '../grupos/components/add-edit-grupos/add-edit-grupos.component';
 
 @Component({
@@ -100,8 +101,8 @@ export class ContatosComponent implements OnInit, OnDestroy {
     }
   }
 
-  //onButtonClick() {
-  //  this.dialogService.openGenericDialog(AddEditContatosComponent)
-  //}
+  onButtonClick() {
+   this.dialogService.openGenericDialog(AddEditContatosComponent)
+  }
 
 }

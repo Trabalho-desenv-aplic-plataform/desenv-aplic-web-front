@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ContatosComponent } from './contatos.component';
+import { SharedModule } from 'src/shared/shared.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ContatosComponent } from './contatos.component';
     ContatosComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     ContatosRoutingModule,
     ContatosRoutingModule,
