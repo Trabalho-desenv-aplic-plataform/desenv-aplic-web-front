@@ -67,8 +67,6 @@ export class UsuariosComponent implements OnInit {
     this.service.getAll().pipe(takeUntil(this.destroy$)).subscribe({
       next: (response) => {
         this.rows = response;
-        console.log("[getList]", this.rows);
-        
       },
       error: (error) => {
         console.error("[getList] Error fetching list:", error);
@@ -77,7 +75,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   onActionClick(event: any) {
-    console.log("[onActionClick]", event);
     if (event.name === "delete") {
       this.service.delete(event.element.id).pipe(finalize(() => this.getList())).subscribe({
         next: (response) => {
@@ -88,8 +85,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   openDialog() {
-    console.log("chamou");
-    
     this.dialogService.openGenericDialog(AddEditUsuarioComponent);
   }
 }

@@ -1,7 +1,7 @@
 .table-overflow-component {
     table-layout: fixed;
     width: 100%;
-  
+
     .overflow-detect .overflow-detect-span {
       display: block;
       max-width: 100%;
@@ -25,6 +25,9 @@
   &.edit {
     background-color: #FBF3CA;
   }
+  &.sned-message {
+    background-color: #0A8D88;
+  }
   &.delete {
     background-color: #FDE6E7;
   }
@@ -40,5 +43,8 @@
   }
   &.delete {
     color: #E94A63;
+  }
+  &.send-message {
+    color: #0A8D85;
   }
 }

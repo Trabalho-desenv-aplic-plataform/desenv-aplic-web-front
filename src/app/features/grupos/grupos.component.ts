@@ -6,6 +6,7 @@ import { Actions } from 'src/shared/interfaces/actions';
 import { Column } from 'src/shared/interfaces/column';
 import { GruposService } from './service/grupos.service';
 import { DatePipe } from '@angular/common';
+import { SendMessageGroupComponent } from './components/send-message-group/send-message-group.component';
 
 @Component({
   selector: 'app-grupos',
@@ -50,6 +51,12 @@ export class GruposComponent implements OnInit, OnDestroy {
       tooltip: "Excluir",
       icon: "delete_forever",
       class: "delete"
+    },
+    {
+      name: "send-message",
+      tooltip: "Enviar mensagem",
+      icon: "message",
+      class: "send-message"
     }
   ]
 
@@ -82,7 +89,6 @@ export class GruposComponent implements OnInit, OnDestroy {
   }
 
   onActionClick(event: any){
-    console.log("[onActionClick]", event);
     if (event.name === "delete") {
       this.service.delete(event.element.id).pipe(finalize(() => this.getList())).subscribe({
         next: (response) => {
@@ -91,6 +97,9 @@ export class GruposComponent implements OnInit, OnDestroy {
           })
         }
       })
+    }
+    else if (event.name === 'send-message') {
+      this.sendMessageDialog(event.element);
     }
   }
 
@@ -105,4 +114,12 @@ export class GruposComponent implements OnInit, OnDestroy {
     })
   }
 
+  sendMessageDialog(element: any) {
+    this.dialogService.openGenericDialog(SendMessageGroupComponent, {
+      ...element
+    })
+    .afterClosed().subscribe((response: boolean) => {
+
+    });
+  }
 }

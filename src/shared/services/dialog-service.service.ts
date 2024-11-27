@@ -24,10 +24,8 @@ export class DialogService {
       minWidth: '40vw',
       minHeight: '80vh',
       panelClass: 'position-relative',
+      data: cfg
     }
-
-    console.log("chamou o service");
-    
 
     return this.dialog?.open(cmp, {
       ...baseOptions
