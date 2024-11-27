@@ -54,13 +54,9 @@ export class AddEditGruposComponent implements OnInit {
     private dialogRef: MatDialogRef<AddEditGruposComponent>,
     private service: GruposService
   ) {}
-  
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
-  }
-
-  public onEventLog(event: string, data: any): void {
-    console.log(event, data);
   }
 
   public onChangeColorCmyk(color: string): Cmyk {
