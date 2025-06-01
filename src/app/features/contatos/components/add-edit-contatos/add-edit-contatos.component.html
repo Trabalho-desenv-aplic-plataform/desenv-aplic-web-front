@@ -1,0 +1,43 @@
+<div class="d-flex flex-column align-items-center">
+    <button mat-fab style="background: var(--primary-color);" class="header-title-dialog-button">
+        <mat-icon matPrefix>bookmark_outline</mat-icon>
+    </button>
+    <h1>
+        <strong>
+            Adicionar Contato
+        </strong>
+    </h1>
+</div>
+<div class="w-100">
+    <mat-form-field floatLabel="never" class="w-100" appearance="outline">
+        <mat-icon matPrefix>bookmark_outline</mat-icon>
+        <input matInput placeholder="Digite o nome" id="name" [(ngModel)]="name">
+        <mat-label>Nome</mat-label>
+    </mat-form-field>
+    <mat-form-field floatLabel="never" class="w-100" appearance="outline">
+        <mat-icon matPrefix>bookmark_outline</mat-icon>
+        <input matInput placeholder="Digite o nome" id="numero" [(ngModel)]="numero">
+        <mat-label>Número</mat-label>
+    </mat-form-field>
+    <mat-form-field floatLabel="never" class="w-100" appearance="outline">
+        <mat-icon matPrefix>bookmark_outline</mat-icon>
+        <mat-label>Grupo</mat-label>
+        <mat-select [(value)]="grupoId">
+            <mat-option *ngFor="let grupo of grupoList" [value]="grupo.id">
+                {{ grupo.nome }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="d-flex flex-row mt-4 w-100 justify-content-center">
+    <button (click)="exit()" mat-flat-button class="button-dialog-secondary me-2" (click)="generatePayload()">
+        <strong>
+            Fechar
+        </strong>
+    </button>
+    <button mat-flat-button class="button-dialog-primary" (click)="generatePayload()">
+        <strong>
+            Salvar
+        </strong>
+    </button>
+</div>

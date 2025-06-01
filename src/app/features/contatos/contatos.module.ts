@@ -10,11 +10,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ContatosComponent } from './contatos.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { AddEditContatosComponent } from './components/add-edit-contatos/add-edit-contatos.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
   declarations: [
-    ContatosComponent
+    ContatosComponent,
+    AddEditContatosComponent
   ],
   imports: [
     SharedModule,
@@ -27,6 +30,7 @@ import { SharedModule } from 'src/shared/shared.module';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSelectModule
   ]
 })
 export class ContatosModule { }
